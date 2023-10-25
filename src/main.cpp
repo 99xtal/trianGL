@@ -1,5 +1,7 @@
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
+#include <iostream>
+#include <format>
 #include <stdio.h>
 
 const unsigned int SCR_WIDTH = 800;
@@ -47,12 +49,13 @@ int main(void)
 
     int version = gladLoadGL(glfwGetProcAddress);
     if (version == 0) {
+        std::cout << "Failed to initialize OpenGL context" << std::endl;
         printf("Failed to initialize OpenGL context\n");
         return -1;
     }
 
     // Successfully loaded OpenGL
-    printf("Loaded OpenGL %d.%d\n", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
+    std::cout << std::format("Loaded OpenGL {}.{}\n", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version)) << std::endl;
 
 
     unsigned int vertexShader;
@@ -73,8 +76,6 @@ int main(void)
     glLinkProgram(shaderProgram);
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
-
-    printf("Gets here");
 
     float vertices[] = {
         -0.5f, -0.5f, 0.0f,

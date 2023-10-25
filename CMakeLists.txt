@@ -9,6 +9,6 @@ add_subdirectory(lib/glfw)
 
 find_package(OpenGL REQUIRED)
 
-add_executable(trianGL src/main.c lib/glad/src/gl.c)
+add_executable(trianGL src/main lib/glad/src/gl.c)
 include_directories(lib/glad/include)
 target_link_libraries(trianGL glfw OpenGL::GL)
